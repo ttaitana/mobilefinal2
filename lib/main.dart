@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './Login.dart';
+import './Register.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,10 +22,21 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => LoginScreen()
+        '/': (context) => blank(),
+        '/login': (context) => LoginScreen(),
+        '/register' : (context) => RegisterScreen()
       },
     );
   }
+}
+
+class blank extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold();
+  }
+
 }
