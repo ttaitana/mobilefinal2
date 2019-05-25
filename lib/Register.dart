@@ -86,7 +86,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                       child: Text("Register"),
                       onPressed: () async {
                         if (_formkey.currentState.validate()) {
-                          _storage.open('todo.db');
+                          await _storage.open('tester.db');
                           Storage data = Storage();
                           data.user = userController.text;
                           data.name = nameController.text;

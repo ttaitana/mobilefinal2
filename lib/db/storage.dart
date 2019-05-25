@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
-final String tableTodo = 'todo';
+final String tableTodo = 'tester';
 final String columnId = '_id';
 final String columnUseId = 'user_id';
 final String columnName = 'name';
@@ -85,25 +85,18 @@ class StorageProvider {
     return null;
   }
 
+  Future<List<Storage>> getAllData() async{
+    List<Map<String, dynamic>> data = await db.query(
+      tableTodo,
+    );
+    return data.map((f) => Storage.formMap(f)).toList();
+  }
+
   Future<int> update(Storage data) async {
     return await db.update(tableTodo, data.toMap(),
         where: '$columnId = ?', whereArgs: [data.id]);
   }
 
-  Future<bool> logins(String username, String password) async {
-    print('get int');
-    List<Map> maps = await db.query(tableTodo,
-        columns: [columnId, columnUseId, columnName, columnQuote, columnAge],
-        where: '$columnUseId = ?',
-        whereArgs: [username]);
-    print(maps);
-    // if(data.length > 0){
-    //   return true;
-    // }else{
-    //   return false;
-    // }
-    // return data;
-  }
 
   Future close() async => db.close();
 }
